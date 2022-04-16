@@ -10,16 +10,16 @@ from forms import CreatePostForm, CreateRegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get("secret_key") #'8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 # Create LoginManager
 login_manager = LoginManager()
 login_manager.init_app(app)
-
 
 # Load user from id
 @login_manager.user_loader
